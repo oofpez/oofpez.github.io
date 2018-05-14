@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Timetable</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="./css/styles.css">
+        <script src="./js/signalr.min.js"></script>
         <script src="./js/tapi.js"></script>
+        <script src="./js/routethink.js"></script>      
     </head>
     <body style="background-color: #f6f6f6; margin-left:0; margin-right:0;">
             <h1 id="title" ></h1> 
         <div class='topHeading'>
             <h3 id="agency"></h3> 
             <h2 id="time"></h2> 
+            <h2 id="eta"></h2>           
         </div>
         <!--Table-->
         <table class="table">
@@ -21,6 +24,7 @@
                     <th>Direction</th>
                     <th>Arrive</th>
                     <th>Depart</th>
+                    <th>ETA</th>
                 </tr>
             </thead>
             <!--Table head-->

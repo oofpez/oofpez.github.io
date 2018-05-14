@@ -49,6 +49,7 @@ function bindStopTimeTableToPage(timetable) {
                 <td>${item.vehicle.headsign}</td>
                 <td>${toDateString(new Date(item.arrivalTime))}</td>
                 <td>${toDateString(new Date(item.departureTime))}</td>
+                <td id=${item.vehicle.tripKey}>--</td>
                 </tr>`
         });
 
@@ -74,6 +75,10 @@ function main() {
                  .catch(error => {
                         showErrorMessage(error);
                  });   
+
+                //Add listener to routeThink locationHub. only bother with stop case for now.
+                initializeSignalRForStopEta();
+
         }
         else if(lineId) {
                 getLineTimetable(lineId)
