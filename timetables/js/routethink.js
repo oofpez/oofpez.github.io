@@ -35,7 +35,12 @@ function UpdateStopEtas(stopId)
                 var elem = document.getElementById(key);
                 if (elem)
                 {
-                    elem.innerHTML =  "(" + value.lastRecordedLateness + ")";
+                    if (value.lastRecordedLateness > 0){
+                        elem.innerHTML =  + value.lastRecordedLateness + 's late';
+                    } else {
+                        elem.innerHTML =  value.lastRecordedLateness + 's early';
+                    }
+                    
                    
                 }
             }

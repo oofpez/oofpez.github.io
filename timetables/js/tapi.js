@@ -2,6 +2,8 @@
 var CLIENT_ID = '8bd4ea1f-5ef2-43d9-a629-036717d29a7d';
 var CLIENT_SECRET = 'Tj/uhBjttwgOV7RL/hufBfmvC16gS+uCqkR2nYSGWaI=';
 
+
+
 var payload = {
   'client_id': CLIENT_ID,
   'client_secret': CLIENT_SECRET,
@@ -55,11 +57,15 @@ var getStopFromTapi = function(token, stopId) {
     );
 };
 
-var getStopTimetables = function(token, stopId) {
+var getStopTimetables = function(token, stopId, at) {
     return new Promise(
         (resolve, reject) => {
             var request = new XMLHttpRequest();
-            request.open('GET', 'https://platform.whereismytransport.com/api/stops/' + stopId + '/timetables', true);
+            var url = 'https://platform.whereismytransport.com/api/stops/' + stopId + '/timetables'
+            if (at){
+                url = url + '?earliestArrivalTime='+ at;
+            }
+            request.open('GET', url, true);
             request.setRequestHeader('Content-type', 'application/json');
             request.setRequestHeader('Authorization', 'Bearer ' + token);
             request.addEventListener('load', function () {
@@ -98,10 +104,10 @@ async function getStop(stopId) {
     })
 }
 
-async function getStopTimetable(stopId) {
+async function getStopTimetable(stopId,at) {
     return new Promise((resolve,reject) => {
         getBearerToken()
-        .then(token => getStopTimetables(token, stopId)) 
+        .then(token => getStopTimetables(token, stopId,at)) 
         .then(fulfilled => resolve(fulfilled))
         .catch(error => reject(error.message));
     })

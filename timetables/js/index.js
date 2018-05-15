@@ -19,7 +19,7 @@ function startTime() {
 function getQueryVariable(variable)
 {
        var query = window.location.search.substring(1);
-       var vars = query.split("&");
+       var vars = query.replace('?','&').split('&');
        for (var i=0;i<vars.length;i++) {
                var pair = vars[i].split("=");
                if(pair[0] == variable){return pair[1];}
@@ -60,6 +60,7 @@ function main() {
         startTime();
         let stopId = getQueryVariable('stopid');
         let lineId = getQueryVariable('lineid');
+        let at= getQueryVariable('at');
 
         if(stopId) {
                 getStop(stopId)
@@ -68,7 +69,7 @@ function main() {
                         showErrorMessage(error);
                 });
 
-                getStopTimetable(stopId)
+                getStopTimetable(stopId,at)
                 .then(timetable => {
                         bindStopTimeTableToPage(timetable);
                  })
