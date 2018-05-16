@@ -36,9 +36,9 @@ function UpdateStopEtas(stopId)
                 if (elem)
                 {
                     if (value.lastRecordedLateness > 0){
-                        elem.innerHTML =  + value.lastRecordedLateness + 's late';
+                        elem.innerHTML =  + Math.floor(value.lastRecordedLateness /60) + 'min late';
                     } else {
-                        elem.innerHTML =  value.lastRecordedLateness + 's early';
+                        elem.innerHTML =  Math.floor(value.lastRecordedLateness / 60) + 'min early';
                     }
                     
                    
