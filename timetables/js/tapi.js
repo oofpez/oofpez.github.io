@@ -61,9 +61,9 @@ var getStopTimetables = function(token, stopId, at) {
     return new Promise(
         (resolve, reject) => {
             var request = new XMLHttpRequest();
-            var url = 'https://platform.whereismytransport.com/api/stops/' + stopId + '/timetables'
+            var url = 'https://platform.whereismytransport.com/api/stops/' + stopId + '/timetables?limit=100'
             if (at){
-                url = url + '?earliestArrivalTime='+ at;
+                url = url + '&earliestArrivalTime='+ at;
             }
             request.open('GET', url, true);
             request.setRequestHeader('Content-type', 'application/json');
